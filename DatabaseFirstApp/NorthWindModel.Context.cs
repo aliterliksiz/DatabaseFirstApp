@@ -26,5 +26,6 @@ namespace DatabaseFirstApp
         }
     
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }
