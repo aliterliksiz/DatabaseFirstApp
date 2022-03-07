@@ -11,7 +11,7 @@ namespace DatabaseFirstApp
     {
         static void Main(string[] args)
         {
-            NORTHWNDEntities db = new NORTHWNDEntities();
+            //NORTHWNDEntities db = new NORTHWNDEntities();
             //CRUD
             //Create
 
@@ -149,21 +149,62 @@ namespace DatabaseFirstApp
             //                 MinPrice = g.Min(x => x.p.UnitPrice)
             //             }; //LINQ format --23
 
-            var result = (from p in db.Products
-                         join c in db.Categories
-                         on p.CategoryID equals c.CategoryID
-                         group new { c, p } by new { c.CategoryName } into g
-                         select new
-                         {
-                             g.Key.CategoryName,
-                             NumberOfPRoducts = g.Count(),
-                             TotalPrice = g.Sum(x => x.p.UnitPrice),
-                             MaxPrice = g.Max(x => x.p.UnitPrice),
-                             MinPrice = g.Min(x => x.p.UnitPrice)
-                         }).Where(x=>x.TotalPrice>300);
-            ConsoleTable.From(result).Write();
+            //var result = (from p in db.Products
+            //             join c in db.Categories
+            //             on p.CategoryID equals c.CategoryID
+            //             group new { c, p } by new { c.CategoryName } into g
+            //             select new
+            //             {
+            //                 g.Key.CategoryName,
+            //                 NumberOfPRoducts = g.Count(),
+            //                 TotalPrice = g.Sum(x => x.p.UnitPrice),
+            //                 MaxPrice = g.Max(x => x.p.UnitPrice),
+            //                 MinPrice = g.Min(x => x.p.UnitPrice)
+            //             }).Where(x=>x.TotalPrice>300); //LINQ format --24
+
+
+            //ConsoleTable.From(result).Write();
             //Console.WriteLine(result);
+            //Console.ReadLine();
+
+
+            //IMMEDIATE MODE VE DEFERED MODE FARKI
+
+            //NORTHWNDEntities db = new NORTHWNDEntities();
+            //var categories = db.Categories.ToList(); // Immediate Mode (burada sql'e sorgu anında düşür yani bu satır çalışır çalışmaz sql profile'a sorgu gönderilir
+            //var categories = db.Categories; // Defered Mode (burada sql'e sorgu anında düşmez burada yazılan categories'e ne zaman ihtiyaç duyarsan sorgu o zaman düşecektir)
+
+            //var number = categories.Count(); //işte sorgu burada düşer veya bunu foreach ile dönerken
+
+            //foreach (var item in collection)
+            //{
+            //    //burda ihtiyaç duyunca burada sql' sorgu düşer
+            //}
+            ////NOT: Defered Mode ile Lazy Loadin Farklı Şeylerdir.
+            ///
+
+            //LAZY LOADIN VE NAVIGATION PROPERTIES
+
+            //NORTHWNDEntities db = new NORTHWNDEntities();
+            //var category = db.Categories.Find(1);
+            //var products1 = db.Products.Where(x => x.CategoryID == category.CategoryID);
+            //var products2 = category.Products;
+            //// products1 ve products2 aynıdır. aynı sorguyu döndürür.
+            //foreach (var pro in products1)
+            //{
+            //    Console.WriteLine(pro.ProductName);
+            //    Console.WriteLine("Supplier: " + pro.Supplier.CompanyName);
+            //}
+            //Console.WriteLine("**********************************************");
+            //foreach (var pro2 in products2)
+            //{
+            //    Console.WriteLine(pro2.ProductName);
+            //    Console.WriteLine("Supplier: " + pro2.Supplier.CompanyName);
+            //}
+
+
             Console.ReadLine();
+
         }
     }
 }
