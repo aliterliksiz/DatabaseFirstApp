@@ -18,6 +18,7 @@ namespace DatabaseFirstApp
         public NORTHWNDEntities()
             : base("name=NORTHWNDEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -96,7 +96,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="NORTHWNDModel.FK_Products_Categories" FromRole="Category" ToRole="Product" />
         </EntityType>
-        <EntityContainer Name="NORTHWNDEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NORTHWNDEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Products" EntityType="NORTHWNDModel.Product" />
           <AssociationSet Name="FK_Products_Categories" Association="NORTHWNDModel.FK_Products_Categories">

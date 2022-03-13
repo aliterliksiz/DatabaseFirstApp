@@ -11,7 +11,7 @@ namespace DatabaseFirstApp
     {
         static void Main(string[] args)
         {
-            //NORTHWNDEntities db = new NORTHWNDEntities();
+            NORTHWNDEntities db = new NORTHWNDEntities();
             //CRUD
             //Create
 
@@ -41,8 +41,11 @@ namespace DatabaseFirstApp
             //db.Categories.Remove(category);
             //db.SaveChanges();
 
-            //var result = db.Categories; //method hali yazılışı --1
+            // BASİT SELECT SORGULARI
 
+            //var result = db.Categories; //method hali yazılışı --1
+            //Console.WriteLine(result);
+            //ConsoleTable.From(result).Write();
             //var result = from cat in db.Categories
             //select cat; //LINQ yazılışı --1
 
@@ -202,6 +205,15 @@ namespace DatabaseFirstApp
             //    Console.WriteLine("Supplier: " + pro2.Supplier.CompanyName);
             //}
 
+            //EAGER LOADING
+
+            //var category = db.Categories.Include("Products").Include("Products.Supplier").FirstOrDefault(x => x.CategoryID == 1);
+            //var products = category.Products; //1000
+            //foreach (var product in products)
+            //{
+            //    Console.WriteLine(product.ProductName);
+            //    Console.WriteLine(product.Supplier.CompanyName);
+            //}
 
             Console.ReadLine();
 
